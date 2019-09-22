@@ -1,0 +1,109 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="Startup Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <!-- Web-Fonts -->
+    <link
+        href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+        rel="stylesheet">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+                <!-- logo -->
+                <div id="logo" style="font-family: 'Satisfy', cursive;">
+                    <h1><a href="{% url 'book:index' %}"><span class="fa fa-linode mr-2"></span>BookShop</a></h1>
+                </div>
+                <!-- //logo -->
+                <!-- nav -->
+                {% if request.user.is_authenticated %}
+                {% endif %}
+                <!-- //nav -->
+                <div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
+                    <!-- search -->
+                    {% if request.user.is_authenticated %}
+                    <a class="dwn-w3ls btn" href="{% url 'logout' %}" data-toggle="tooltip" data-placement="bottom"
+                        title="logout">
+                        <span class="fa fa-sign-out"></span>
+                    </a>
+                    <!-- //search -->
+                    <!-- download -->
+                    {% else %}
+                    <div style="padding-right:5px ">
+                        <a class="dwn-w3ls btn" href="{% url 'login' %}" data-toggle="tooltip" data-placement="bottom"
+                            title="login">
+                            <span class="fa fa-sign-in"></span>
+                        </a>
+                    </div>
+                    <div>
+                        <a class="dwn-w3ls btn" href="{% url 'register' %}" data-toggle="tooltip"
+                            data-placement="bottom" title="register">
+                            <span class="fa fa-registered"></span>
+                        </a>
+                    </div>
+                    {% endif %}
+                    <!-- //download -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //header -->
+
+    <div class="container-fluid" style="padding: 20px;">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message|safe }}
+            <button type="button" data-dismiss="alert" aria-label="Close" class="close">
+                <span aria-hidden="true">&times</span>
+            </button>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="" async defer>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+</body>
+
+</html>
